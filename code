@@ -1,0 +1,10 @@
+$cd repo
+
+$for branch in $(git branch --all | grep '^\s*remotes' | egrep --invert-match '(:?HEAD|master)$'); do
+    git branch --track "${branch##*/}" "$branch"
+done
+
+$git clone --mirror https://github.com/mfoufoutis/Foobar.git
+$git remote set-url --push origin https://mfoufoutis@bitbucket.org/mfoufoutis/Foobar
+$git push --mirror
+
